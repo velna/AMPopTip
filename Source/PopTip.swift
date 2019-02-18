@@ -635,14 +635,13 @@ open class PopTip: UIView {
     dismissTimer?.invalidate()
     dismissTimer = nil
     
-    if let gestureRecognizer = tapRemoveGestureRecognizer {
-      containerView?.removeGestureRecognizer(gestureRecognizer)
-    }
-    if let gestureRecognizer = swipeGestureRecognizer {
-      containerView?.removeGestureRecognizer(gestureRecognizer)
-    }
-    
     let completion = {
+      if let gestureRecognizer = self.tapRemoveGestureRecognizer {
+          self.containerView?.removeGestureRecognizer(gestureRecognizer)
+      }
+      if let gestureRecognizer = self.swipeGestureRecognizer {
+          self.containerView?.removeGestureRecognizer(gestureRecognizer)
+      }
       self.customView?.removeFromSuperview()
       self.customView = nil
       self.dismissActionAnimation()
